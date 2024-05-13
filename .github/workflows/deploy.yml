@@ -39,10 +39,10 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: drawsmcgraw/container-lifecycle:latest
+        tags: drawsmcgraw/container-lifecycle:${{ github.sha }}
 
     - name: Wiz Image Scan
-      run: wizcli docker scan --image drawsmcgraw/container-lifecycle
+      run: wizcli docker scan --image drawsmcgraw/container-lifecycle:${{ github.sha }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -64,9 +64,9 @@ jobs:
     ###  run: |
     ###    kubectl set image deployment/your-deployment your-container=$IMAGE_URI
 
-    ###- name: Populate Kubernetes manifest
-    ###  run: |
-    ###    sed "s|IMAGE_NAME|yourusername/yourapp:latest|g" k8s/deployment.yaml.template > deployment.yaml
+    - name: Populate Kubernetes manifest
+      run: |
+        sed "s|REPLACE_WITH_SHA|${{ github.sha }}|g" k8s/app.yaml.template > app.yaml
 
     - name: Deploy to Kubernetes
       run: |
