@@ -41,6 +41,9 @@ jobs:
         push: true
         tags: drawsmcgraw/container-lifecycle:${{ github.sha }}
 
+    - name: Image list for sanity check
+      run: docker images --digests
+
     - name: Wiz Image Scan
       run: wizcli docker scan --image drawsmcgraw/container-lifecycle:${{ github.sha }}
 
