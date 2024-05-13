@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/wiz-sec/showoff-wiz-containers/issues"
   },
-  "homepage": "https://github.com/wiz-sec/showoff-wiz-containers#readme"
+  "homepage": "https://github.com/wiz-sec/showoff-wiz-containers#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
 }
