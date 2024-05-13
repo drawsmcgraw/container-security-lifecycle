@@ -41,11 +41,10 @@ jobs:
         push: true
         tags: drawsmcgraw/container-lifecycle:${{ github.sha }}
 
-    - name: Image list for sanity check
-      run: docker images --digests
-
     - name: Wiz Image Scan
-      run: wizcli docker scan --image drawsmcgraw/container-lifecycle:${{ github.sha }}
+      run: |
+        docker pull drawsmcgraw/container-lifecycle:${{ github.sha }}
+        wizcli docker scan --image drawsmcgraw/container-lifecycle:${{ github.sha }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
