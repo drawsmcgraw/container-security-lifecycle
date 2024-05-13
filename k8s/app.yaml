@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: yourusername/your-node-app:latest
+        image: drawsmcgraw/container-lifecycle:latest
         ports:
         - containerPort: 3000
 

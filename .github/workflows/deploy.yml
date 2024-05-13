@@ -35,14 +35,20 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Set up Kubectl
+    - name: Install kubectl
+      run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+
+    - name: Update kubeconfig
       uses: aws-actions/configure-kubectl@v1
       with:
-        cluster-name: ${{ secrets.CLUSTER_NAME }}
+        cluster-name: ${{ secrets.EKS_CLUSTER_NAME }}
 
-    - name: Deploy to EKS
-      run: |
-        kubectl set image deployment/your-deployment your-container=$IMAGE_URI
+    ###- name: Deploy to EKS
+    ###  run: |
+    ###    kubectl set image deployment/your-deployment your-container=$IMAGE_URI
 
     ###- name: Populate Kubernetes manifest
     ###  run: |
@@ -50,8 +56,8 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f deployment.yaml
-        kubectl rollout status deployment/yourdeploymentname
+        kubectl apply -f k8s/app.yaml
+        kubectl rollout status deployment/node-app-deployment
 
     - name: Get LoadBalancer IP
       id: get-lb-ip
