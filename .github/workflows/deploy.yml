@@ -1,6 +1,10 @@
 name: Deploy to Kubernetes Cluster
 
 on:
+  # workflow_dispatch to enable manual triggers
+  workflow_dispatch:
+  
+  # pushes to the main branch
   push:
     branches:
       - main  # Set this to the branch you want to deploy from
