@@ -77,7 +77,7 @@ jobs:
 
     - name: Get LoadBalancer IP
       id: get-lb-ip
-      run: echo "LB_IP=$(kubectl get svc yourservice -o jsonpath='{.status.loadBalancer.ingress[0].ip}')" >> $GITHUB_ENV
+      run: echo "LB_IP=$(kubectl get svc node-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}')" >> $GITHUB_ENV
 
     - name: Echo the application URL
       run: echo "Visit your application at http://$LB_IP"
