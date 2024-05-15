@@ -68,7 +68,7 @@ jobs:
 
     - name: Populate Kubernetes manifest
       run: |
-        sed "s|REPLACE_WITH_SHA|${{ github.sha }}|g" k8s/app.yaml.template > app.yaml
+        sed "s|REPLACE_WITH_SHA|${{ github.sha }}|g" k8s/app.yaml.template > k8s/app.yaml
 
     - name: Deploy to Kubernetes
       run: |
