@@ -1,3 +1,3 @@
 # NOTE: these are not real. For demo purposes only
-aws_access_key_id = AKIASQIXHT5YDSYBA26R
-aws_secret_access_key = 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
+aws_access_key_id = AKIASQIXHT5YDSYBA49G
+aws_secret_access_key = Zp+7tUGrw1us2+/MFVxX2qS0rQIR0dURwDyTDM5h
