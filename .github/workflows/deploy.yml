@@ -78,5 +78,5 @@ jobs:
     - name: Display LoadBalancer URL
       id: get-lb-ip
       run: |
-        LB_IP=$(kubectl get svc node-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        LB_IP=$(kubectl get svc node-app-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
         echo "Visit application at ${LB_IP}"
