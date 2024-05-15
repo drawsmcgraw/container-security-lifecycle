@@ -75,9 +75,8 @@ jobs:
         kubectl apply -f k8s/app.yaml
         kubectl rollout status deployment/node-app-deployment
 
-    - name: Get LoadBalancer IP
+    - name: Display LoadBalancer URL
       id: get-lb-ip
-      run: LB_IP=$(kubectl get svc node-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}') >> $GITHUB_ENV
-
-    - name: Echo the application URL
-      run: echo "Visit your application at http://$LB_IP"
+      run: |
+        LB_IP=$(kubectl get svc node-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        echo "Visit application at {$LB_IP}"
